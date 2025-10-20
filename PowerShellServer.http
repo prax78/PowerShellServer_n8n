@@ -1,0 +1,9 @@
+@PowerShellServer_HostAddress = http://localhost:10000
+
+
+
+POST {{PowerShellServer_HostAddress}}/ExecuteCode
+Content-Type: application/json
+{
+  "code": "Get-Process | Select-Object -First 5"
+}
