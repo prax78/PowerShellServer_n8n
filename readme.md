@@ -2,7 +2,7 @@
 
 Minimal .NET 9 API that executes PowerShell scripts received from an n8n AI agent.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Zt08JPVtcLc?si=NMYdTmxENqqhE5L1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 ## Overview
 This project is built with the .NET minimal API template and exposes a single POST route:
