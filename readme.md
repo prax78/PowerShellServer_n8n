@@ -2,6 +2,8 @@
 
 Minimal .NET 9 API that executes PowerShell scripts received from an n8n AI agent.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Zt08JPVtcLc?si=NMYdTmxENqqhE5L1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Overview
 This project is built with the .NET minimal API template and exposes a single POST route:
 - `POST /executecode`
@@ -11,7 +13,7 @@ The API expects a JSON payload containing a PowerShell script. For each request 
 2. Executes that file with PowerShell on the host.
 3. Captures stdout/stderr and returns the execution result to the caller (the n8n AI agent).
 
-This project is intentionally small and focused — it does not include production-ready authentication, sandboxing, or advanced safety controls.
+This project is intentionally small and focused â€” it does not include production-ready authentication, sandboxing, or advanced safety controls.
 
 ## Requirements
 - .NET 9 SDK
@@ -19,17 +21,17 @@ This project is intentionally small and focused — it does not include production
 - Visual Studio 2022 (recommended) or `dotnet` CLI
 
 ## Files of interest
-- `Program.cs` — minimal API routing and startup.
-- `ExecutePS.cs` — implementation that writes GUID-named `.ps1` file and runs PowerShell.
-- `RecCode.cs` — models for incoming requests / responses.
-- `appsettings.json` — configuration values (if present).
-- `PowerShellServer.http` — example HTTP requests for use with REST client tooling.
+- `Program.cs` â€” minimal API routing and startup.
+- `ExecutePS.cs` â€” implementation that writes GUID-named `.ps1` file and runs PowerShell.
+- `RecCode.cs` â€” models for incoming requests / responses.
+- `appsettings.json` â€” configuration values (if present).
+- `PowerShellServer.http` â€” example HTTP requests for use with REST client tooling.
 
 ## Route
 POST `/executecode`
 
 Expected request body (JSON):
-- `script` — string containing the PowerShell script to execute.
+- `script` â€” string containing the PowerShell script to execute.
 
 Example request body:
 {
@@ -82,7 +84,7 @@ Recommendations before using in production:
 - Use TLS (HTTPS) and validate requests (API key, JWT, IP allow-list).
 - Add input validation, execution time limits, and resource constraints.
 - Consider sandboxing or using a restricted PowerShell session configuration (ConstrainedLanguageMode) or custom run-as account.
-- Log and monitor usage and maintain retention policies for generated `.ps1` files — or delete them immediately after execution.
+- Log and monitor usage and maintain retention policies for generated `.ps1` files â€” or delete them immediately after execution.
 
 ## Troubleshooting
 - If execution fails, check that PowerShell is in PATH and accessible by the process running the API.
