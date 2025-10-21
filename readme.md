@@ -2,6 +2,8 @@
 
 Minimal .NET 9 API that executes PowerShell scripts received from an n8n AI agent.
 
+[![Watch the video](https://github.com/prax78/PowerShellServer_n8n/blob/master/ps_server.png)](https://www.youtube.com/watch?v=Zt08JPVtcLc)
+
 
 
 ## Overview
