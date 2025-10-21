@@ -5,5 +5,5 @@
 POST {{PowerShellServer_HostAddress}}/ExecuteCode
 Content-Type: application/json
 {
-  "code": "Get-Process | Select-Object -First 5"
+  "code": "Get-Processs | Select-Object -First 5"
 }

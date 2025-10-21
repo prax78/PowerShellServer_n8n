@@ -37,11 +37,17 @@ namespace PowerShellServer
                     p.Start();
                     _logger.LogInformation("PowerShell script started.");
                     Result = p.StandardOutput.ReadToEnd();
+                    if(p.StandardError.Peek() > -1)
+                    {
+                        var errorMsg = p.StandardError.ReadToEnd();
+                        _logger.LogError("PowerShell script error: " + errorMsg);
+                        Result += $"\nError: {errorMsg}";
+                    }
                     p.Close();
                 }
                 catch(Exception ex)
                 {
-                    _logger.LogCritical("PowerShell script Error."+ ex.Message);
+                    _logger.LogError("PowerShell script Execution."+ ex.Message);
                     Result = $"Error executing PowerShell script: {ex.Message}";
                 }
               
@@ -52,7 +58,7 @@ namespace PowerShellServer
             else
             {
                
-                _logger.LogCritical($"Error in file operations. Error Code: {writeStatus}");
+                _logger.LogError($"Error in file operations. Error Code: {writeStatus}");
 
             }
 

@@ -50,7 +50,7 @@ namespace PowerShellServer
                 catch (Exception ex)
                 {
                    
-                    logger.LogCritical("Error processing request: " + ex.Message);
+                    logger.LogError("Error processing request: " + ex.Message);
                     return Results.Problem("Error processing request: " + ex.Message);
                 }
             })
