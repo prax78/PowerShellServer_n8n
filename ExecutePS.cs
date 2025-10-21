@@ -11,11 +11,12 @@ namespace PowerShellServer
     {
         public string Result { get; set; } =string.Empty;
         public int ErrorCode { get; set; } = 0;
-
+        private  ILogger _logger;
 
         public ExecutePS(string code)
         {
               List<string> msg = new List<string>();
+           _logger= LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("PowerShellServer");
             var guid = Guid.NewGuid().ToString();
             var writeStatus = HandleFileOperations($"{guid}.ps1", code, "Write");
             if(writeStatus == 0)
@@ -34,13 +35,13 @@ namespace PowerShellServer
                 p.StartInfo.RedirectStandardError = true;
                 try {
                     p.Start();
+                    _logger.LogInformation("PowerShell script started.");
                     Result = p.StandardOutput.ReadToEnd();
-
-
                     p.Close();
                 }
                 catch(Exception ex)
                 {
+                    _logger.LogCritical("PowerShell script Error."+ ex.Message);
                     Result = $"Error executing PowerShell script: {ex.Message}";
                 }
               
@@ -50,7 +51,8 @@ namespace PowerShellServer
             }
             else
             {
-                msg.Add($"Error in file operations. Error Code: {writeStatus}");
+               
+                _logger.LogCritical($"Error in file operations. Error Code: {writeStatus}");
 
             }
 
@@ -65,6 +67,7 @@ namespace PowerShellServer
                 try
                 {
                     File.WriteAllText(filename, content);
+            
                 }
                 catch (Exception ex)
                 {
